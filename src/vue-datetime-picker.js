@@ -68,10 +68,15 @@ module.exports = {
   template: "<div class='input-group date'>" +
               "<input class='form-control' :name='name' type='text' />" +
               "<span class='input-group-addon'>" +
-                "<i class='fa fa-fw fa-calendar'></i>" +
+                "<i class='fa fa-fw {{ icon }} '></i>" +
               "</span>" +
             "</div>",
   props: {
+	icon: {
+	  type: String,
+	  required: false,
+	  default: "fa-calendar"
+	},
     model: {
       required: true,
       twoWay: true
@@ -131,7 +136,7 @@ module.exports = {
         today: 'fa fa-dot-circle-o',
         clear: 'fa fa-trash',
         close: 'fa fa-times'
-      }
+      }	  
     };
     // set the locale
     var language = this.language;
