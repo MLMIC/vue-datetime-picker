@@ -61,21 +61,34 @@ var DEFAULT_LANGUAGE = "en-US";
  *    was changed. If this parameter is presented and is not null, it must be a
  *    function which accept one argument: the new date time, which is a moment
  *    object.
+ * @param icon
+ *    icon for calendar control button.  defaults to calendar when not supplied.
+  * @param dependentOn
+ *    data element that this input is dependent on.  If truthiness is false, input is disabled.
  */
 module.exports = {
   replace: true,
   inherit: false,
   template: "<div class='input-group date'>" +
-              "<input class='form-control' :name='name' type='text' />" +
-              "<span class='input-group-addon'>" +
+              "<input :disabled='!dependentOn' class='form-control' :name='name' type='text' :placeholder='placeholder'/>" +
+              "<span :if='!dependentOn' class='input-group-addon'>" +
                 "<i class='fa fa-fw {{ icon }} '></i>" +
               "</span>" +
             "</div>",
   props: {
+	placeholder: {
+	  type: String,
+	  required: false,
+	  default: ""
+	},	  
 	icon: {
 	  type: String,
 	  required: false,
 	  default: "fa-calendar"
+	},
+	dependentOn: {
+	  required: false,
+	  default: true
 	},
     model: {
       required: true,
